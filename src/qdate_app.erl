@@ -14,7 +14,10 @@
 %% ===================================================================
 
 start(_StartType, _StartArgs) ->
-    qdate_sup:start_link().
+    Return = qdate_sup:start_link(),
+    %% register a date format for 'YYYY-MM-DD HH-MiAM/PM'
+    qdate:register_format(tt_date_format, "d/m/Y h:ia"),
+    Return.
 
 stop(_State) ->
     ok.
